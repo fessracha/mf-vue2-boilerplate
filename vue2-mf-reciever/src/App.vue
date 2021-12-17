@@ -9,6 +9,9 @@
     <aside class="sidebar">
       <nav class="nav-menu">
         <li class="nav-menu__item">
+          <router-link to="/" class="nav-menu__link">Home</router-link>
+        </li>
+        <li class="nav-menu__item">
           <router-link to="/dogs" class="nav-menu__link">Dogs</router-link>
         </li>
         <li class="nav-menu__item">

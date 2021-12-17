@@ -3,10 +3,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require('vue-loader');
 const { ModuleFederationPlugin } = require("webpack").container;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
 module.exports = (env = {}) => ({
   mode: "development",
   cache: false,
-  devtool: "source-map",
+  devtool: 'inline-source-map',
   optimization: {
     minimize: false,
   },
@@ -39,6 +41,7 @@ module.exports = (env = {}) => ({
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
@@ -48,7 +51,7 @@ module.exports = (env = {}) => ({
       filename: "remoteEntry.js",
       library: { type: 'var', name: 'counter_app' },
       exposes: {
-        "./initCounterApp": "./src/initCounterApp.js",
+        "./myapp": "./src/initCounterApp.js",
       },
     }),
     new HtmlWebpackPlugin({
