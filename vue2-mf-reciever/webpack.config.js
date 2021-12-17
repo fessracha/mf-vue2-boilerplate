@@ -3,14 +3,19 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require('vue-loader');
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
 module.exports = (env = {}) => ({
   mode: "development",
   cache: false,
-  devtool: "source-map",
+  devtool: 'inline-source-map',
   optimization: {
     minimize: false,
   },
-  entry: path.resolve(__dirname, "./src/main.js"),
+  entry: {
+    index: path.resolve(__dirname, "./src/main.js"),
+    404: path.resolve(__dirname, "./src/main.js"),
+  },
   output: {
     publicPath: "auto",
   },
@@ -39,19 +44,25 @@ module.exports = (env = {}) => ({
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
     new ModuleFederationPlugin({
-      name: "receiver_app",
-      filename: "remoteEntry.js",
       remotes: {
-        counter_app: "counter_app@http://127.0.0.1:3001/remoteEntry.js",
+        counter_app: "counter_app@http://10.200.16.89:3001/remoteEntry.js",
       },
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./index.html"),
+      filename: 'index.html',
+      chunks: ['index']
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "./404.html"),
+      filename: '404.html',
+      chunks: ['404']
     })
   ],
   devServer: {

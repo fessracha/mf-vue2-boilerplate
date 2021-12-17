@@ -1,31 +1,27 @@
 <template>
-  <div>
-    <h3>Page for testing inject micro-frontend</h3>
-    <!--MF wrapper-->
-    <div id="mf-scope"></div>
-    <div v-if="mfStatus === 'loading'">loading microfrontend...</div>
-    <div v-if="mfStatus === 'error'">microfrontend is not available :(</div>
+  <div >
+    <h3>Page for testing inject micro-frontend !</h3>
+
+    <div class="block">
+      <m-f-loader id="mf-scope" class="sdfdfs4455">
+        <template v-slot:loading>
+          loading microfrontend...
+        </template>
+        <template v-slot:error>
+          microfrontend is not available :(
+        </template>
+      </m-f-loader>
+    </div>
+
   </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      mfStatus: 'init'
-    }
-  },
-  mounted() {
-    this.mfStatus = 'loading';
+import MFLoader from "./MFLoader";
 
-    import('counter_app/initCounterApp')
-        .then(({ initCounterApp }) => {
-          initCounterApp('#mf-scope')
-          this.mfStatus = 'success';
-        })
-        .catch(e => {
-          console.log('Error load MF');
-          this.mfStatus = 'error';
-        });
-  }
+export default {
+  name: 'PadeDemo',
+  components: {
+    MFLoader,
+  },
 }
 </script>

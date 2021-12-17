@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "http-server -c-1 -p 3002 ./dist",
-    "serve": "serve dist -p 3001",
+    "server": "http-server -c-1 -p 3002 ./dist",
+    "watch": "webpack --watch",
     "build": "webpack --mode production",
     "clean": "rm -rf dist"
   },
@@ -12,22 +12,22 @@
     "@babel/core": "7.11.0",
     "@vue/compiler-sfc": "3.2.6",
     "babel-loader": "8.1.0",
-    "http-server": "^0.13.0",
     "serve": "12.0.1",
     "vue": "2.6.14",
     "vue-router": "^3.5.3"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "6.3.0",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.3.2",
+    "http-server": "^14.0.0",
     "mini-css-extract-plugin": "2.4.3",
     "url-loader": "4.1.1",
     "vue-loader": "15.9.8",
     "vue-template-compiler": "2.6.14",
+    "vuex-smart-module": "0.5.0",
     "webpack": "5.61.0",
-    "webpack-cli": "4.8.0",
-    "webpack-dev-server": "4.2.1",
-    "vuex-smart-module": "0.5.0"
+    "webpack-cli": "4.8.0"
   }
 }
