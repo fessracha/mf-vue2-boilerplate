@@ -20,8 +20,13 @@ import MFLoader from "./MFLoader";
 
 export default {
   name: 'PadeDemo',
+  props: ['name', 'base'],
   components: {
     MFLoader,
   },
+  mounted() {
+    console.log(this.$route);
+    console.log(this.name, this.base);
+  }
 }
 </script>

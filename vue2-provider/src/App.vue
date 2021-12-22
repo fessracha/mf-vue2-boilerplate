@@ -1,8 +1,9 @@
 <template>
   <div>
     <h3>Vue2 App</h3>
-    <Content :count="count"/>
-    <Button @btnClick="inc"/>
+    <router-view/>
+<!--    <Content :count="count"/>-->
+<!--    <Button @btnClick="inc"/>-->
   </div>
 </template>
 

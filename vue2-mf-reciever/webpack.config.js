@@ -17,7 +17,7 @@ module.exports = (env = {}) => ({
     404: path.resolve(__dirname, "./src/main.js"),
   },
   output: {
-    publicPath: "auto",
+    publicPath: "http://localhost:3002/",
   },
   resolve: {
     extensions: [".vue", ".jsx", ".js", ".json"],
@@ -51,7 +51,7 @@ module.exports = (env = {}) => ({
     }),
     new ModuleFederationPlugin({
       remotes: {
-        counter_app: "counter_app@http://10.200.16.89:3001/remoteEntry.js",
+        counter_app: "counter_app@http://127.0.0.1:3001/remoteEntry.js",
       },
     }),
     new HtmlWebpackPlugin({
