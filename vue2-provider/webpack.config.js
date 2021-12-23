@@ -4,11 +4,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require('vue-loader');
 const { ModuleFederationPlugin } = require("webpack").container;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+// const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 
 module.exports = (env = {}) => ({
-  mode: "development",
   cache: false,
   devtool: 'inline-source-map',
   optimization: {
@@ -40,29 +39,23 @@ module.exports = (env = {}) => ({
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          // 'vue-style-loader',
-          MiniCssExtractPlugin.loader,
-          // {
-          //   loader: 'vue-style-loader',
-          //   options: {
-          //     shadowMode: true
-          //   }
-          // },
-          'css-loader',
-          // 'sass-loader',
+          /*process.env.NODE_ENV !== 'production'
+              ? 'vue-style-loader'
+              :*/ MiniCssExtractPlugin.loader,
+          'css-loader'
         ],
       },
     ],
   },
   plugins: [
-    new WebpackManifestPlugin({
-      publicPath: ''
-    }),
+    // new WebpackManifestPlugin({
+    //   publicPath: ''
+    // }),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      // filename: "[name].css",
-      filename: 'style.css'
+      filename: "[name].css",
+      attributes: { 'data-app-from': 'ads'},
     }),
     new ModuleFederationPlugin({
       name: "counter_app",

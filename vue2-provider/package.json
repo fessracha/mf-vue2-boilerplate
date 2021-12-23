@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "server": "http-server --cors -c-1 -p 3001 ./dist",
-    "watch": "webpack --watch",
+    "watch": "webpack --watch --mode development",
     "build": "webpack --mode production",
     "clean": "rm -rf dist"
   },
