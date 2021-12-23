@@ -22,28 +22,13 @@ import MFLoader from "./MFLoader";
 
 export default {
   name: 'PadeDemo',
+  props: ['name', 'base'],
   components: {
     MFLoader,
   },
   mounted() {
-    // const url = 'http://127.0.0.1:3001';
-    // fetch(`${url}/manifest.json`)
-    // .then(response => {
-    //   const json = response.json();
-    //   json.then(manifest => {
-    //     console.log(manifest);
-    //
-    //     import(`${url}/${manifest['main.js']}`)
-    //         .then((response) => {
-    //           console.log(response)
-    //         })
-    //         .catch(e => {
-    //           console.error(e);
-    //           this.status = 'error';
-    //         });
-    //
-    //   })
-    // })
+    console.log(this.$route);
+    console.log(this.name, this.base);
   }
 }
 </script>

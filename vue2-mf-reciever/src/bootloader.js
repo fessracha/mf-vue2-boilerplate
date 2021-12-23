@@ -11,7 +11,8 @@ const PageDogs = () => import('./components/PageDogs.vue');
 const routes = [
   { path: '/', component: PageHome },
   { path: '/dogs', component: PageDogs },
-  { path: '/demo', component: PageDemo }
+  { path: '/demo*', component: PageDemo, props: { name: 'test', base: '/'} },
+  // { path: '/demo/inner', component: PageDemo, props: { name: 'test', base: '/'} }
 ]
 
 const router = new Router({
