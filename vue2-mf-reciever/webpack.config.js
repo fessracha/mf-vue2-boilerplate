@@ -29,15 +29,28 @@ module.exports = (env = {}) => ({
     rules: [
       {
         test: /\.vue$/,
-        use: "vue-loader",
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              shadowMode: true
+            }
+          }
+        ],
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {},
+            loader: 'vue-style-loader',
+            // options: {
+            //   shadowMode: true
+            // }
           },
+          // {
+          //   loader: MiniCssExtractPlugin.loader,
+          //   options: {},
+          // },
           "css-loader",
         ],
       },
@@ -46,9 +59,9 @@ module.exports = (env = {}) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: "[name].css",
+    // }),
     new ModuleFederationPlugin({
       remotes: {
         counter_app: "counter_app@http://10.200.16.89:3001/remoteEntry.js",

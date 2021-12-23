@@ -4,10 +4,12 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
+const PageHome = () => import('./components/PageHome.vue');
 const PageDemo = () => import('./components/PageDemo.vue');
 const PageDogs = () => import('./components/PageDogs.vue');
 
 const routes = [
+  { path: '/', component: PageHome },
   { path: '/dogs', component: PageDogs },
   { path: '/demo', component: PageDemo }
 ]
@@ -21,4 +23,4 @@ const router = new Router({
 new Vue({
   router,
   render: (h) => h(App),
-}).$mount("#app");
+}).$mount('#app');

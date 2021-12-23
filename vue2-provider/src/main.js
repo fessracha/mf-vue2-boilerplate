@@ -1,3 +1,3 @@
 import { initCounterApp } from "./initCounterApp";
 
-initCounterApp('#app');
+initCounterApp(document.getElementById('app'));

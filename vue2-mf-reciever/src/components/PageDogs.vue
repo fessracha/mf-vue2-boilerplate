@@ -6,6 +6,11 @@
     </div>
   </div>
 </template>
+
+<script>
+
+</script>
+
 <style scoped>
   .dogs-layout {
     display: grid;

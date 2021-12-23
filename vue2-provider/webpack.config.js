@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require('vue-loader');
 const { ModuleFederationPlugin } = require("webpack").container;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+
 
 module.exports = (env = {}) => ({
   mode: "development",
@@ -26,25 +28,41 @@ module.exports = (env = {}) => ({
     rules: [
       {
         test: /\.vue$/,
-        use: "vue-loader",
-      },
-      {
-        test: /\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {},
-          },
-          "css-loader",
+            loader: 'vue-loader',
+            options: {
+              shadowMode: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          // 'vue-style-loader',
+          MiniCssExtractPlugin.loader,
+          // {
+          //   loader: 'vue-style-loader',
+          //   options: {
+          //     shadowMode: true
+          //   }
+          // },
+          'css-loader',
+          // 'sass-loader',
         ],
       },
     ],
   },
   plugins: [
+    new WebpackManifestPlugin({
+      publicPath: ''
+    }),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      // filename: "[name].css",
+      filename: 'style.css'
     }),
     new ModuleFederationPlugin({
       name: "counter_app",

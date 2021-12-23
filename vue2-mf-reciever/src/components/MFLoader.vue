@@ -23,7 +23,16 @@ export default {
   mounted() {
     import('counter_app/myapp')
         .then(({ initCounterApp }) => {
-          initCounterApp(this.$el)
+          // Boolean(this.$el.attachShadow)
+          if (false) {
+            this.$el.attachShadow({mode: 'open'});
+            this.$el.shadowRoot.innerHTML = '<div></div>';
+            const root = this.$el.shadowRoot.querySelector('div');
+            console.log(root);
+            initCounterApp(root)
+          } else  {
+            initCounterApp(this.$el);
+          }
           this.status = 'success';
         })
         .catch(e => {

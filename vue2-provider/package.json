@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "server": "http-server -c-1 -p 3001 ./dist",
+    "server": "http-server --cors -c-1 -p 3001 ./dist",
     "watch": "webpack --watch",
     "build": "webpack --mode production",
     "clean": "rm -rf dist"
@@ -22,8 +22,10 @@
     "html-webpack-plugin": "5.3.2",
     "http-server": "^14.0.0",
     "mini-css-extract-plugin": "2.4.5",
+    "sass-loader": "^12.4.0",
     "url-loader": "4.1.1",
     "vue-loader": "15.9.8",
+    "vue-style-loader": "^4.1.3",
     "vue-template-compiler": "2.6.14",
     "webpack": "5.61.0",
     "webpack-cli": "4.8.0",

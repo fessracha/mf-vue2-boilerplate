@@ -5,6 +5,7 @@
 <script>
 
 export default {
+  name: 'Button',
   methods: {
     click() {
       this.$emit("btnClick");
@@ -15,3 +16,6 @@ export default {
 }
 </script>
 
+<style>
+
+</style>
