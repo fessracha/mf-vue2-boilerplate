@@ -37,12 +37,18 @@ module.exports = (env = {}) => ({
         ]
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.css$/,
         use: [
-          /*process.env.NODE_ENV !== 'production'
-              ? 'vue-style-loader'
-              :*/ MiniCssExtractPlugin.loader,
-          'css-loader'
+          // process.env.NODE_ENV !== 'production'
+          //     ? 'vue-style-loader'
+          //     : MiniCssExtractPlugin.loader,
+          {
+            loader: "vue-style-loader",
+            options: {
+              ssrId: true,
+            }
+          },
+          'css-loader',
         ],
       },
     ],

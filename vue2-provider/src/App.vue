@@ -1,9 +1,15 @@
 <template>
   <div>
     <h3>Vue2 App</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
+      asperiores autem commodi corporis cum deserunt, distinctio dolorum eaque
+      eligendi eum excepturi facilis, fugiat harum illo ipsum laudantium magni
+      maiores maxime molestiae nam nulla officiis omnis placeat praesentium
+      quasi quia quisquam recusandae rem repellat sapiente temporibus voluptate
+      voluptates voluptatibus. Doloremque, labore.</p>
     <router-view/>
-<!--    <Content :count="count"/>-->
-<!--    <Button @btnClick="inc"/>-->
+    <!--    <Content :count="count"/>-->
+    <!--    <Button @btnClick="inc"/>-->
   </div>
 </template>
 
@@ -32,5 +38,8 @@ export default {
 <style>
 h1 {
   font-family: Arial, Helvetica, sans-serif;
+}
+p {
+  color: coral;
 }
 </style>
