@@ -23,13 +23,14 @@ export default {
     }
   },
   mounted() {
-    // this.initMFStorageLinks()
-    // this.initElementMount();
-    // this.initObserver();
+    this.initElementMount();
+    this.initMFStorageLinks()
+    this.mountLocalMFStorageLinks();
+    this.initObserver();
 
     import('mf_mntg/initMntgApp')
         .then((initMntgApp) => {
-          initMntgApp.default(this.$refs.shadowRoot, '/demo/')
+          initMntgApp.default(this.elementMount, '/demo/')
 
           this.status = 'success';
         })
@@ -38,9 +39,6 @@ export default {
           console.error(e);
           this.status = 'error';
         });
-  },
-  watch: {
-    localMFStorageLinks: 'onChangeLocalMFStorageLinks'
   },
   methods: {
     initMFStorageLinks() {
@@ -59,6 +57,14 @@ export default {
       shadowRoot.shadowRoot.innerHTML = '<div></div>';
       this.elementMount = shadowRoot.shadowRoot.querySelector('div');
     },
+    mountLocalMFStorageLinks() {
+      this.localMFStorageLinks.forEach(item => {
+        const style = document.createElement('style');
+        style.dataset.vueSsrId = item.vueSsrId;
+        style.innerText = item.text;
+        this.elementMount.before(style);
+      })
+    },
     initObserver() {
       const head = document.querySelector('head')
       const config = {
@@ -67,26 +73,19 @@ export default {
       const observer = new MutationObserver((mutationsList) => {
         mutationsList.forEach(mutation => {
           mutation.addedNodes.forEach(node => {
-            const { appFrom } = node.dataset;
-            if (appFrom === 'ads') {
-              window.MFStorageLinks.ads.push(node.href);
+            const { vueSsrId } = node.dataset;
+            if (vueSsrId) {
+              window.MFStorageLinks.ads.push({
+                vueSsrId: vueSsrId,
+                text: node.innerText,
+              });
               this.elementMount.before(node);
-              console.log(node.href);
             }
           });
         })
       });
       observer.observe(head, config);
     },
-    onChangeLocalMFStorageLinks(newArr) {
-      newArr.forEach(item => {
-        const link = document.createElement('link');
-        link.type = 'text/css';
-        link.rel= 'stylesheet';
-        link.href = item;
-        this.elementMount.before(link);
-      })
-    }
   }
 }
 </script>
