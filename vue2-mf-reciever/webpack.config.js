@@ -64,7 +64,7 @@ module.exports = (env = {}) => ({
     // }),
     new ModuleFederationPlugin({
       remotes: {
-        counter_app: "counter_app@http://127.0.0.1:3001/remoteEntry.js",
+        mf_mntg: "mf_mntg@http://localhost:8083/remoteEntry.js",
       },
     }),
     new HtmlWebpackPlugin({

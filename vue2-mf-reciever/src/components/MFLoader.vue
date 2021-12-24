@@ -23,13 +23,13 @@ export default {
     }
   },
   mounted() {
-    this.initMFStorageLinks()
-    this.initElementMount();
-    this.initObserver();
+    // this.initMFStorageLinks()
+    // this.initElementMount();
+    // this.initObserver();
 
-    import('counter_app/myapp')
-        .then(({ initCounterApp }) => {
-          initCounterApp(this.elementMount)
+    import('mf_mntg/initMntgApp')
+        .then((initMntgApp) => {
+          initMntgApp.default(this.$refs.shadowRoot, '/demo/')
 
           this.status = 'success';
         })

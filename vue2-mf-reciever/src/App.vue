@@ -98,4 +98,10 @@ main {
   background-color: lightblue;
   padding: 20px;
 }
+
+@media screen and (max-width: 700px) {
+  .main-layout {
+    grid-template-columns: 100%;
+  }
+}
 </style>

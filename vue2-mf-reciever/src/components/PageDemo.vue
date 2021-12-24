@@ -35,7 +35,5 @@ export default {
 
 <style>
 .component {
-  padding: 15px;
-  background: #cde7ff;
 }
 </style>
